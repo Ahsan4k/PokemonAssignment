@@ -17,7 +17,7 @@ const ICONS = [
     name: 'home',
   },
   {
-    name: 'cart',
+    name: 'cart-outline',
   },
 ];
 
