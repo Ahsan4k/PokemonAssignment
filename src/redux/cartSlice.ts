@@ -18,9 +18,28 @@ const CartSlice = createSlice({
     cartRemove: (state, action) => {
       state.data = state.data.filter(item => item.name != action.payload.name);
     },
+    cartIncrease: (state, action) => {
+      const pokemonToIncrease = action.payload.pokemon;
+      const existingPokemonIndex = state.data.findIndex(
+        item => item.name === pokemonToIncrease,
+      );
+      if (existingPokemonIndex !== -1) {
+        state.data[existingPokemonIndex].quantity += 1;
+      }
+    },
+    cartDecrease: (state, action) => {
+      const pokemonToDecrease = action.payload.pokemon;
+      const existingPokemonIndex = state.data.findIndex(
+        item => item.name === pokemonToDecrease,
+      );
+      if (existingPokemonIndex !== -1) {
+        state.data[existingPokemonIndex].quantity -= 1;
+      }
+    },
   },
 });
 
-export const {cartAdd, cartRemove} = CartSlice.actions;
+export const {cartAdd, cartRemove, cartIncrease, cartDecrease} =
+  CartSlice.actions;
 
 export default CartSlice.reducer;

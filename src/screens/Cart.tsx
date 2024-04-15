@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {cartRemove} from '../redux/cartSlice';
+import {cartDecrease, cartIncrease, cartRemove} from '../redux/cartSlice';
 
 const {width, height} = Dimensions.get('window');
 
@@ -33,6 +33,7 @@ const Cart = () => {
       return item;
     });
     setItems(updatedItems);
+    dispatch(cartIncrease({pokemon: name}));
   };
 
   const decreaseQuantity = name => {
@@ -43,6 +44,7 @@ const Cart = () => {
       return item;
     });
     setItems(updatedItems);
+    dispatch(cartDecrease({pokemon: name}));
   };
 
   const removeItem = name => {
