@@ -32,7 +32,10 @@ const CartSlice = createSlice({
       const existingPokemonIndex = state.data.findIndex(
         item => item.name === pokemonToDecrease,
       );
-      if (existingPokemonIndex !== -1) {
+      if (
+        existingPokemonIndex !== -1 &&
+        state.data[existingPokemonIndex].quantity > 1
+      ) {
         state.data[existingPokemonIndex].quantity -= 1;
       }
     },
