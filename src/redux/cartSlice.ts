@@ -15,9 +15,12 @@ const CartSlice = createSlice({
         state.data.push({...pokemonToAdd, quantity: 1});
       }
     },
+    cartRemove: (state, action) => {
+      state.data = state.data.filter(item => item.name != action.payload.name);
+    },
   },
 });
 
-export const {cartAdd} = CartSlice.actions;
+export const {cartAdd, cartRemove} = CartSlice.actions;
 
 export default CartSlice.reducer;

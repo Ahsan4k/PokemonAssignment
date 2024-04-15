@@ -7,12 +7,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {cartRemove} from '../redux/cartSlice';
 
 const {width, height} = Dimensions.get('window');
 
 const Cart = () => {
   const cartItems = useSelector(state => state.cart.data);
+  const dispatch = useDispatch();
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -45,6 +47,7 @@ const Cart = () => {
 
   const removeItem = name => {
     const updatedItems = items.filter(item => item.name !== name);
+    dispatch(cartRemove({name}));
     setItems(updatedItems);
   };
 
